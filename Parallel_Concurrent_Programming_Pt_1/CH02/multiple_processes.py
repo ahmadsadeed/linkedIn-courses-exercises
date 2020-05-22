@@ -11,6 +11,7 @@ def cpu_waster():
         pass
 
 print('Hi! My name is', __name__)
+# this if statement will make sure we don't create processes inside processes
 if __name__ == '__main__':
     # display information about this process
     print('\n  Process ID: ', os.getpid())

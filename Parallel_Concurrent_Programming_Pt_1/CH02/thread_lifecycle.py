@@ -4,6 +4,7 @@
 import threading
 import time
 
+
 class ChefOlivia(threading.Thread):
 
     def __init__(self):
@@ -13,6 +14,7 @@ class ChefOlivia(threading.Thread):
         print('Olivia started & waiting for sausage to thaw...')
         time.sleep(3)
         print('Olivia is done cutting sausage.')
+
 
 # main thread
 if __name__ == '__main__':

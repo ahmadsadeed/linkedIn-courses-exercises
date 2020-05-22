@@ -15,8 +15,8 @@ print('Thread Count: ', threading.active_count())
 for thread in threading.enumerate():
     print(thread)
 
-print('\nStarting 12 CPU Wasters...')
-for i in range(12):
+print('\nStarting 2 CPU Wasters...')
+for i in range(2):
     threading.Thread(target=cpu_waster).start()
 
 # display information about this process
