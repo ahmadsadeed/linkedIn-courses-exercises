@@ -5,10 +5,12 @@ import threading
 
 garlic_count = 0
 
+
 def shopper():
     global garlic_count
     for i in range(10_000_000):
         garlic_count += 1
+
 
 if __name__ == '__main__':
     barron = threading.Thread(target=shopper)

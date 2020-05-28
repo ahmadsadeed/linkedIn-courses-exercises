@@ -7,6 +7,7 @@ import time
 garlic_count = 0
 pencil = threading.Lock()
 
+
 def shopper():
     global garlic_count
     for i in range(5):
@@ -15,6 +16,7 @@ def shopper():
         pencil.acquire()
         garlic_count += 1
         pencil.release()
+
 
 if __name__ == '__main__':
     barron = threading.Thread(target=shopper)
