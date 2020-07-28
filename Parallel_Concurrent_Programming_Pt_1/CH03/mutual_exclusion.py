@@ -5,7 +5,7 @@ import threading
 import time
 
 garlic_count = 0
-pencil = threading.Lock()
+lock = threading.Lock()
 
 
 def shopper():
@@ -13,9 +13,9 @@ def shopper():
     for i in range(5):
         print(threading.current_thread().getName(), 'is thinking.')
         time.sleep(0.5)
-        pencil.acquire()
+        lock.acquire()
         garlic_count += 1
-        pencil.release()
+        lock.release()
 
 
 if __name__ == '__main__':

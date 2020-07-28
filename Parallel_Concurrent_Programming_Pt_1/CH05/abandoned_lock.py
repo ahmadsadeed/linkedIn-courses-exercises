@@ -8,17 +8,21 @@ chopstick_b = threading.Lock()
 chopstick_c = threading.Lock()
 sushi_count = 500
 
+
 def philosopher(name, first_chopstick, second_chopstick):
     global sushi_count
-    while sushi_count > 0: # eat sushi until it's all gone
+    while sushi_count > 0:  # eat sushi until it's all gone
+        # using context managers (with block) replaces using try-finally block
+        # no need to add .acquire with "with" block.
         with first_chopstick:
             with second_chopstick:
                 if sushi_count > 0:
                     sushi_count -= 1
                     print(name, 'took a piece! Sushi remaining:', sushi_count)
-
+                # this will cause a crash but the code will continue to release the thread
                 if sushi_count == 10:
                     print(1/0)
+
 
 if __name__ == '__main__':
     threading.Thread(target=philosopher, args=('Barron', chopstick_a, chopstick_b)).start()

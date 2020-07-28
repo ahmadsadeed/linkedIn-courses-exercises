@@ -10,9 +10,13 @@ chopstick_b = threading.Lock()
 chopstick_c = threading.Lock()
 sushi_count = 500
 
+
+# opposite to deadlock, in livelock, threads are being overly polite and and
+# release threads if they can't have both threads. This is also problematic.
+# The program may run forever. To resolve, use a random sleep statement... 
 def philosopher(name, first_chopstick, second_chopstick):
     global sushi_count
-    while sushi_count > 0: # eat sushi until it's all gone
+    while sushi_count > 0:  # eat sushi until it's all gone
         first_chopstick.acquire()
         if not second_chopstick.acquire(blocking=False):
             print(name, 'released their first chopstick.')
@@ -26,6 +30,7 @@ def philosopher(name, first_chopstick, second_chopstick):
             finally:
                 second_chopstick.release()
                 first_chopstick.release()
+
 
 if __name__ == '__main__':
     threading.Thread(target=philosopher, args=('Barron', chopstick_a, chopstick_b)).start()

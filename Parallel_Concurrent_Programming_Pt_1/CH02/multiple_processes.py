@@ -5,10 +5,12 @@ import os
 import threading
 import multiprocessing as mp
 
+
 # a simple function that wastes CPU cycles forever
 def cpu_waster():
     while True:
         pass
+
 
 print('Hi! My name is', __name__)
 # this if statement will make sure we don't create processes inside processes

@@ -8,10 +8,11 @@ chopstick_b = threading.Lock()
 chopstick_c = threading.Lock()
 sushi_count = 5000
 
+
 def philosopher(name, first_chopstick, second_chopstick):
     global sushi_count
     sushi_eaten = 0
-    while sushi_count > 0: # eat sushi until it's all gone
+    while sushi_count > 0:  # eat sushi until it's all gone
         with first_chopstick:
             with second_chopstick:
                 if sushi_count > 0:
@@ -19,6 +20,7 @@ def philosopher(name, first_chopstick, second_chopstick):
                     sushi_eaten += 1
                     print(name, 'took a piece! Sushi remaining:', sushi_count)
     print(name, 'took', sushi_eaten, 'pieces')
+
 
 if __name__ == '__main__':
     for thread in range(50):

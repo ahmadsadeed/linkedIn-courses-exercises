@@ -21,4 +21,4 @@ if __name__ == '__main__':
     threading.Thread(target=vegetable_chopper, name='You').start()
 
     time.sleep(1)    # chop vegetables for 1 second
-    chopping = False # stop both threads from chopping
+    chopping = False  # stop both threads from chopping

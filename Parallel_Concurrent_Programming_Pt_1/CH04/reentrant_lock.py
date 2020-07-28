@@ -5,25 +5,31 @@ import threading
 
 garlic_count = 0
 potato_count = 0
-pencil = threading.RLock()
+
+# using re-entrant lock to prevent deadlock
+lock = threading.RLock()
+
 
 def add_garlic():
     global garlic_count
-    pencil.acquire()
+    lock.acquire()
     garlic_count += 1
-    pencil.release()
+    lock.release()
+
 
 def add_potato():
     global potato_count
-    pencil.acquire()
+    lock.acquire()
     potato_count += 1
     add_garlic()
-    pencil.release()
+    lock.release()
+
 
 def shopper():
     for i in range(10_000):
         add_garlic()
         add_potato()
+
 
 if __name__ == '__main__':
     barron = threading.Thread(target=shopper)

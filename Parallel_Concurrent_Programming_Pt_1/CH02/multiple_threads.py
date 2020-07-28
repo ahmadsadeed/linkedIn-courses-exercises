@@ -4,10 +4,12 @@
 import os
 import threading
 
+
 # a simple function that wastes CPU cycles forever
 def cpu_waster():
     while True:
         pass
+
 
 # display information about this process
 print('\n  Process ID: ', os.getpid())

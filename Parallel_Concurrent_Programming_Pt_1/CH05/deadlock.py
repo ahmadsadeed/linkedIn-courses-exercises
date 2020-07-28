@@ -8,9 +8,10 @@ chopstick_b = threading.Lock()
 chopstick_c = threading.Lock()
 sushi_count = 500
 
+
 def philosopher(name, first_chopstick, second_chopstick):
     global sushi_count
-    while sushi_count > 0: # eat sushi until it's all gone
+    while sushi_count > 0:  # eat sushi until it's all gone
         first_chopstick.acquire()
         second_chopstick.acquire()
 
@@ -20,8 +21,11 @@ def philosopher(name, first_chopstick, second_chopstick):
 
         second_chopstick.release()
         first_chopstick.release()
-        
+
+
 if __name__ == '__main__':
     threading.Thread(target=philosopher, args=('Barron', chopstick_a, chopstick_b)).start()
     threading.Thread(target=philosopher, args=('Olivia', chopstick_b, chopstick_c)).start()
+    # a deadlock is possible here if we put c before a. One solution is to put
+    # threads in order of priority. Another solution is to use lock timeout.
     threading.Thread(target=philosopher, args=('Steve', chopstick_a, chopstick_c)).start()

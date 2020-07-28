@@ -11,12 +11,15 @@ some_lock = threading.Lock()
 
 some_lock.acquire()
 try:
-    # do something...
+    # do something
+    pass
 finally:
     some_lock.release()
 
 with some_lock:
+    pass
     #do something...
+
 
 def philosopher(name, first_chopstick, second_chopstick):
     global sushi_count
@@ -32,6 +35,7 @@ def philosopher(name, first_chopstick, second_chopstick):
         finally:
             second_chopstick.release()
             first_chopstick.release()
+
 
 if __name__ == '__main__':
     threading.Thread(target=philosopher, args=('Barron', chopstick_a, chopstick_b)).start()
